@@ -1,0 +1,94 @@
+/**
+ * Product Extra Tabs - back office
+ *
+ * @author    Sotiris Betsos
+ * @copyright Sotiris Betsos
+ */
+.sbpt-picker {
+    position: relative;
+    max-width: 600px;
+}
+
+.sbpt-picker-results {
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+    max-height: 280px;
+    overflow-y: auto;
+    margin: 2px 0 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #bbcdd2;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+
+.sbpt-picker-results[hidden] {
+    display: none;
+}
+
+.sbpt-picker-results li {
+    padding: 7px 10px;
+    border-bottom: 1px solid #eef1f2;
+}
+
+.sbpt-picker-results li:last-child {
+    border-bottom: 0;
+}
+
+.sbpt-picker-results .sbpt-result {
+    cursor: pointer;
+}
+
+.sbpt-picker-results .sbpt-result:hover,
+.sbpt-picker-results .sbpt-result:focus {
+    background: #25b9d7;
+    color: #fff;
+    outline: none;
+}
+
+.sbpt-picker-results .sbpt-empty {
+    color: #6c868e;
+    font-style: italic;
+}
+
+.sbpt-picker-selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sbpt-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px 4px 10px;
+    background: #eaf7fa;
+    border: 1px solid #b7e3ec;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.sbpt-chip-remove {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #c05c67;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.sbpt-chip-remove:hover {
+    background: #c05c67;
+    color: #fff;
+}
