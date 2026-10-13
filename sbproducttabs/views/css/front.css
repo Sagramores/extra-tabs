@@ -1,0 +1,57 @@
+/**
+ * Product Extra Tabs - product page (front office)
+ *
+ * Many themes reset every list on the page (ul { list-style: none; padding-left: 0 }).
+ * Restore normal rich text formatting inside the tab content only.
+ *
+ * @author    Sotiris Betsos
+ * @copyright Sotiris Betsos
+ */
+div.sb-product-tab-content ul,
+div.sb-product-tab-content ol {
+    margin: 0 0 1em;
+    padding-left: 1.5em;
+}
+
+div.sb-product-tab-content ul {
+    list-style: disc outside;
+}
+
+div.sb-product-tab-content ul ul {
+    list-style-type: circle;
+}
+
+div.sb-product-tab-content ol {
+    list-style: decimal outside;
+}
+
+div.sb-product-tab-content li {
+    display: list-item;
+    margin-bottom: .25em;
+}
+
+div.sb-product-tab-content p {
+    margin: 0 0 1em;
+}
+
+div.sb-product-tab-content table {
+    width: 100%;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+}
+
+div.sb-product-tab-content th,
+div.sb-product-tab-content td {
+    padding: .4em .6em;
+    border: 1px solid rgba(0, 0, 0, .12);
+    vertical-align: top;
+}
+
+div.sb-product-tab-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+div.sb-product-tab-content > :last-child {
+    margin-bottom: 0;
+}

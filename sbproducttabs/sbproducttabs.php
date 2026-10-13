@@ -22,7 +22,7 @@ class SbProductTabs extends Module
     {
         $this->name = 'sbproducttabs';
         $this->tab = 'front_office_features';
-        $this->version = '2.3.0';
+        $this->version = '2.3.1';
         $this->author = 'Sotiris Betsos';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -200,7 +200,7 @@ class SbProductTabs extends Module
         foreach ($tabs as $tab) {
             $extraContent = new PrestaShop\PrestaShop\Core\Product\ProductExtraContent();
             $extraContent->setTitle($tab['title']);
-            $extraContent->setContent((string) $tab['content']);
+            $extraContent->setContent('<div class="sb-product-tab-content">' . $tab['content'] . '</div>');
             $extraContent->addAttr(['id' => 'sb-product-tab-' . (int) $tab['id_sb_product_tab']]);
             $extraContents[] = $extraContent;
         }
@@ -485,6 +485,12 @@ class SbProductTabs extends Module
         if (!isset($controller->php_self) || $controller->php_self !== 'product') {
             return '';
         }
+
+        $controller->registerStylesheet(
+            'module-sbproducttabs-front',
+            'modules/' . $this->name . '/views/css/front.css',
+            ['media' => 'all', 'priority' => 900]
+        );
 
         $hiddenIds = $this->getHiddenTabIds();
         $focusFirst = (bool) Configuration::get('SBPT_FOCUS_FIRST');
