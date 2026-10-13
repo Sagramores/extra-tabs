@@ -80,6 +80,56 @@ class AdminSbProductTabsController extends ModuleAdminController
             ],
         ];
 
+        $this->fields_options = [
+            'sbpt_default_tabs' => [
+                'title' => $this->t('Default product page tabs'),
+                'icon' => 'icon-eye-slash',
+                'description' => $this->t('Hide the default PrestaShop / theme tabs you do not need. The first visible tab (default or from this module) opens automatically.'),
+                'fields' => [
+                    'SBPT_HIDE_DESCRIPTION' => [
+                        'title' => $this->t('Hide "Description"'),
+                        'type' => 'bool',
+                        'cast' => 'intval',
+                        'validation' => 'isBool',
+                    ],
+                    'SBPT_HIDE_DETAILS' => [
+                        'title' => $this->t('Hide "Product details"'),
+                        'type' => 'bool',
+                        'cast' => 'intval',
+                        'validation' => 'isBool',
+                    ],
+                    'SBPT_HIDE_FEATURES' => [
+                        'title' => $this->t('Hide "Data sheet" (Hummingbird theme)'),
+                        'type' => 'bool',
+                        'cast' => 'intval',
+                        'validation' => 'isBool',
+                    ],
+                    'SBPT_HIDE_ATTACHMENTS' => [
+                        'title' => $this->t('Hide "Attachments"'),
+                        'type' => 'bool',
+                        'cast' => 'intval',
+                        'validation' => 'isBool',
+                    ],
+                    'SBPT_HIDE_CUSTOM' => [
+                        'title' => $this->t('Other tabs to hide'),
+                        'type' => 'text',
+                        'validation' => 'isGenericName',
+                        'class' => 'fixed-width-xxl',
+                        'hint' => $this->t('Tabs added by your theme. Enter the id of the tab content, comma separated.'),
+                        'desc' => $this->t('Tab ids, comma separated, e.g. shippingcmsblock'),
+                    ],
+                    'SBPT_FOCUS_FIRST' => [
+                        'title' => $this->t('Open the first visible tab'),
+                        'type' => 'bool',
+                        'cast' => 'intval',
+                        'validation' => 'isBool',
+                        'desc' => $this->t('When the product page loads, the first visible tab is opened, whether it is a default tab or a tab from this module.'),
+                    ],
+                ],
+                'submit' => ['title' => $this->t('Save')],
+            ],
+        ];
+
         if (Shop::isFeatureActive()) {
             $shopIds = array_map('intval', Shop::getContextListShopID());
             $this->_join = 'INNER JOIN `' . _DB_PREFIX_ . 'sb_product_tab_shop` sa

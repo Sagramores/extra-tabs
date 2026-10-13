@@ -27,6 +27,11 @@ PrestaShop module by **Sotiris Betsos**: adds extra tabs (title + HTML content) 
   - replace a tab with another existing tab on this product only
   - add an existing tab to this product
   - everything is saved with the product's own "Save" button
+- Hide the default product page tabs with switches (Catalog → Product Extra Tabs,
+  "Default product page tabs" panel): Description, Product details, Data sheet
+  (Hummingbird), Attachments, plus any theme tab by its id (e.g. `shippingcmsblock`)
+- The first visible tab (default or from this module) opens automatically; works with
+  tab based themes (Classic and most themes) and accordion based ones (Hummingbird)
 - Search for products / categories / brands by name, reference or ID
 - Ordering via drag & drop in the list
 - Enable / disable per tab

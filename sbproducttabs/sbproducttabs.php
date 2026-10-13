@@ -22,7 +22,7 @@ class SbProductTabs extends Module
     {
         $this->name = 'sbproducttabs';
         $this->tab = 'front_office_features';
-        $this->version = '2.2.0';
+        $this->version = '2.3.0';
         $this->author = 'Sotiris Betsos';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -44,6 +44,18 @@ class SbProductTabs extends Module
         'displayAdminProductsExtra',
         'actionAfterUpdateProductFormHandler',
         'actionProductUpdate',
+        'displayHeader',
+    ];
+
+    /**
+     * Default product page tabs that can be hidden: config key => element ids
+     * (Classic based themes use tabs, Hummingbird uses an accordion).
+     */
+    public const DEFAULT_TABS = [
+        'SBPT_HIDE_DESCRIPTION' => ['description', 'product_description_collapse'],
+        'SBPT_HIDE_DETAILS' => ['product-details', 'product_details_collapse'],
+        'SBPT_HIDE_FEATURES' => ['product_features_collapse'],
+        'SBPT_HIDE_ATTACHMENTS' => ['attachments', 'product_attachments_collapse'],
     ];
 
     /** @var bool[] Products already processed in this request */
@@ -54,11 +66,16 @@ class SbProductTabs extends Module
         return parent::install()
             && $this->installDb()
             && $this->installTab()
+            && $this->installConfiguration()
             && $this->registerHook(self::HOOKS);
     }
 
     public function uninstall()
     {
+        foreach (array_merge(array_keys(self::DEFAULT_TABS), ['SBPT_HIDE_CUSTOM', 'SBPT_FOCUS_FIRST']) as $key) {
+            Configuration::deleteByName($key);
+        }
+
         return $this->uninstallTab()
             && $this->uninstallDb()
             && parent::uninstall();
@@ -70,6 +87,23 @@ class SbProductTabs extends Module
     public function getContent()
     {
         Tools::redirectAdmin($this->context->link->getAdminLink(self::ADMIN_CONTROLLER));
+    }
+
+    public function installConfiguration()
+    {
+        foreach (array_keys(self::DEFAULT_TABS) as $key) {
+            if (Configuration::get($key) === false) {
+                Configuration::updateValue($key, 0);
+            }
+        }
+        if (Configuration::get('SBPT_HIDE_CUSTOM') === false) {
+            Configuration::updateValue('SBPT_HIDE_CUSTOM', '');
+        }
+        if (Configuration::get('SBPT_FOCUS_FIRST') === false) {
+            Configuration::updateValue('SBPT_FOCUS_FIRST', 1);
+        }
+
+        return true;
     }
 
     private function installDb()
@@ -417,5 +451,79 @@ class SbProductTabs extends Module
         } catch (Exception $e) {
             // The error is still in the logs
         }
+    }
+
+    /**
+     * Element ids of the product page tabs to hide (default tabs + theme tabs).
+     *
+     * @return string[]
+     */
+    public function getHiddenTabIds()
+    {
+        $ids = [];
+        foreach (self::DEFAULT_TABS as $key => $tabIds) {
+            if (Configuration::get($key)) {
+                $ids = array_merge($ids, $tabIds);
+            }
+        }
+        foreach (preg_split('/[\s,]+/', (string) Configuration::get('SBPT_HIDE_CUSTOM'), -1, PREG_SPLIT_NO_EMPTY) as $id) {
+            $id = ltrim($id, '#');
+            if (preg_match('/^[A-Za-z][\w-]*$/', $id)) {
+                $ids[] = $id;
+            }
+        }
+
+        return array_values(array_unique($ids));
+    }
+
+    /**
+     * Product page (front office): hides the selected default tabs and opens the first visible one.
+     */
+    public function hookDisplayHeader()
+    {
+        $controller = $this->context->controller;
+        if (!isset($controller->php_self) || $controller->php_self !== 'product') {
+            return '';
+        }
+
+        $hiddenIds = $this->getHiddenTabIds();
+        $focusFirst = (bool) Configuration::get('SBPT_FOCUS_FIRST');
+        if (!$hiddenIds && !$focusFirst) {
+            return '';
+        }
+
+        Media::addJsDef([
+            'sbProductTabsFront' => [
+                'hide' => $hiddenIds,
+                'focusFirst' => $focusFirst,
+            ],
+        ]);
+        $controller->registerJavascript(
+            'module-sbproducttabs-front',
+            'modules/' . $this->name . '/views/js/front.js',
+            ['position' => 'bottom', 'priority' => 200]
+        );
+
+        if (!$hiddenIds) {
+            return '';
+        }
+
+        // Hide immediately, before any script runs, so the hidden tabs never flash on screen
+        $selectors = [];
+        $parentSelectors = [];
+        foreach ($hiddenIds as $id) {
+            $selectors[] = '#' . $id;
+            $selectors[] = '[href="#' . $id . '"]';
+            $selectors[] = '[data-target="#' . $id . '"]';
+            $selectors[] = '[data-bs-target="#' . $id . '"]';
+            $parentSelectors[] = 'li:has(> [href="#' . $id . '"])';
+            $parentSelectors[] = '.accordion-item:has(#' . $id . ')';
+        }
+
+        // Separate rules: browsers without :has() support drop only the second one (the script covers it)
+        return '<style id="sbpt-hidden-tabs">'
+            . implode(',', $selectors) . '{display:none!important}'
+            . implode(',', $parentSelectors) . '{display:none!important}'
+            . '</style>';
     }
 }
