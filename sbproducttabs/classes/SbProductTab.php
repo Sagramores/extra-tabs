@@ -16,6 +16,9 @@ class SbProductTab extends ObjectModel
     public const RULE_CATEGORIES = 3;
     public const RULE_MANUFACTURERS = 4;
 
+    /** @var string Back office only name, never shown to customers */
+    public $internal_name = '';
+
     /** @var int */
     public $display_rule = self::RULE_ALL;
 
@@ -45,6 +48,7 @@ class SbProductTab extends ObjectModel
         'primary' => 'id_sb_product_tab',
         'multilang' => true,
         'fields' => [
+            'internal_name' => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 255],
             'display_rule' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedInt', 'required' => true],
             'product_ids' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],
             'category_ids' => ['type' => self::TYPE_STRING, 'validate' => 'isString'],

@@ -10,6 +10,7 @@ PrestaShop module by **Sotiris Betsos**: adds extra tabs (title + HTML content) 
 ## Features
 
 - Multilingual title and content (WYSIWYG editor)
+- Internal name (back office only) to tell apart tabs that share the same title
 - Show a tab on:
   - all products
   - selected products
@@ -27,6 +28,9 @@ PrestaShop module by **Sotiris Betsos**: adds extra tabs (title + HTML content) 
 2. Back office → **Modules → Module Manager → Upload a module** → choose the zip.
 3. The tabs are managed from **Catalog → Product Extra Tabs**
    (or from the module's "Configure" button).
+
+Upgrading from an earlier version: upload the new zip over the old one; the
+module upgrades automatically and keeps your existing tabs.
 
 The tabs are displayed through the `displayProductExtraContent` hook, which is
 supported by the Classic and Hummingbird themes as well as most third-party themes.

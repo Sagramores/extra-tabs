@@ -46,6 +46,10 @@ class AdminSbProductTabsController extends ModuleAdminController
                 'align' => 'center',
                 'class' => 'fixed-width-xs',
             ],
+            'internal_name' => [
+                'title' => $this->t('Internal name'),
+                'filter_key' => 'a!internal_name',
+            ],
             'title' => [
                 'title' => $this->t('Title'),
                 'filter_key' => 'b!title',
@@ -157,6 +161,14 @@ class AdminSbProductTabsController extends ModuleAdminController
                 'icon' => 'icon-folder-open',
             ],
             'input' => [
+                [
+                    'type' => 'text',
+                    'label' => $this->t('Internal name'),
+                    'name' => 'internal_name',
+                    'maxlength' => 255,
+                    'hint' => $this->t('Only visible in the back office. Use it to tell apart tabs that share the same title.'),
+                    'desc' => $this->t('Only visible in the back office, e.g. "Ingredients - Trahanas".'),
+                ],
                 [
                     'type' => 'text',
                     'label' => $this->t('Title'),

@@ -13,6 +13,7 @@ $sql = [];
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'sb_product_tab` (
     `id_sb_product_tab` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `internal_name` VARCHAR(255) NOT NULL DEFAULT \'\',
     `display_rule` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
     `product_ids` TEXT NULL,
     `category_ids` TEXT NULL,

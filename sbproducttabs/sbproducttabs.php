@@ -22,7 +22,7 @@ class SbProductTabs extends Module
     {
         $this->name = 'sbproducttabs';
         $this->tab = 'front_office_features';
-        $this->version = '2.0.0';
+        $this->version = '2.1.0';
         $this->author = 'Sotiris Betsos';
         $this->need_instance = 0;
         $this->bootstrap = true;
