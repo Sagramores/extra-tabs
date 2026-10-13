@@ -16,6 +16,17 @@ PrestaShop module by **Sotiris Betsos**: adds extra tabs (title + HTML content) 
   - selected products
   - products of selected categories
   - products of selected brands
+- "Also show on these products" / "Hide from these products" lists per tab
+- Editing from the product page (Catalog → Products → edit → **Modules** tab):
+  - edit the title and content of each tab shown on the product
+  - for tabs shared with other products, choose to save **only for this product**
+    (a new tab is created, named `<internal name> - <product name>`, placed right
+    after the original, and the original stops showing on this product) or
+    **for all products**
+  - show / hide a tab on this product only
+  - replace a tab with another existing tab on this product only
+  - add an existing tab to this product
+  - everything is saved with the product's own "Save" button
 - Search for products / categories / brands by name, reference or ID
 - Ordering via drag & drop in the list
 - Enable / disable per tab

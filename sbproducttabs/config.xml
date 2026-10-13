@@ -2,7 +2,7 @@
 <module>
     <name>sbproducttabs</name>
     <displayName><![CDATA[Product Extra Tabs]]></displayName>
-    <version><![CDATA[2.1.0]]></version>
+    <version><![CDATA[2.2.0]]></version>
     <description><![CDATA[Add custom tabs to the product page for all products or for selected products, categories and brands.]]></description>
     <author><![CDATA[Sotiris Betsos]]></author>
     <tab><![CDATA[front_office_features]]></tab>

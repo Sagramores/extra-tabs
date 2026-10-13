@@ -1,0 +1,246 @@
+/**
+ * Product Extra Tabs - product page (back office)
+ *
+ * @author    Sotiris Betsos
+ * @copyright Sotiris Betsos
+ */
+.sbpt-product {
+    max-width: 1000px;
+}
+
+.sbpt-heading {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.sbpt-help {
+    margin: 0 0 16px;
+    color: #6c868e;
+}
+
+.sbpt-help a {
+    margin-left: 6px;
+}
+
+.sbpt-empty-list {
+    padding: 12px;
+    border: 1px dashed #bbcdd2;
+    border-radius: 4px;
+    color: #6c868e;
+}
+
+.sbpt-card {
+    margin-bottom: 16px;
+    border: 1px solid #dfe5e8;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.sbpt-card.is-dirty {
+    border-color: #25b9d7;
+}
+
+.sbpt-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #eef1f2;
+    background: #fafbfc;
+    border-radius: 6px 6px 0 0;
+}
+
+.sbpt-card-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.sbpt-id {
+    color: #6c868e;
+    font-size: 12px;
+}
+
+.sbpt-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    background: #eaf7fa;
+    color: #1e6e80;
+    font-size: 11px;
+}
+
+.sbpt-badge-warning {
+    background: #fff3d6;
+    color: #8a5a00;
+}
+
+.sbpt-badge-hidden {
+    display: none;
+    background: #f5e1e3;
+    color: #a3303d;
+}
+
+.sbpt-card.is-hidden .sbpt-badge-hidden {
+    display: inline-block;
+}
+
+.sbpt-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.sbpt-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.sbpt-link {
+    font-size: 12px;
+}
+
+.sbpt-card-body {
+    padding: 12px 14px;
+}
+
+.sbpt-card.is-hidden .sbpt-card-body,
+.sbpt-card.is-replaced .sbpt-lang-pane,
+.sbpt-card.is-replaced .sbpt-langs,
+.sbpt-card.is-replaced .sbpt-scope {
+    opacity: .45;
+    pointer-events: none;
+}
+
+.sbpt-card.is-hidden .sbpt-card-body .sbpt-replace {
+    display: none;
+}
+
+.sbpt-langs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.sbpt-lang {
+    padding: 2px 10px;
+    border: 1px solid #bbcdd2;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.sbpt-lang.is-active {
+    border-color: #25b9d7;
+    background: #25b9d7;
+    color: #fff;
+}
+
+.sbpt-label {
+    display: block;
+    margin: 10px 0 4px;
+    font-weight: 600;
+}
+
+.sbpt-scope {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border: 1px solid #f0c36d;
+    border-radius: 4px;
+    background: #fff8e5;
+}
+
+.sbpt-scope[hidden],
+.sbpt-replace-note[hidden],
+.sbpt-add-note[hidden],
+.sbpt-lang-pane[hidden] {
+    display: none;
+}
+
+.sbpt-warning {
+    margin: 0 0 8px;
+}
+
+.sbpt-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 4px 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.sbpt-radio input {
+    margin-top: 4px;
+}
+
+.sbpt-replace {
+    margin-top: 6px;
+}
+
+.sbpt-replace-note,
+.sbpt-add-note {
+    margin: 6px 0 0;
+    color: #8a5a00;
+    font-style: italic;
+}
+
+.sbpt-add {
+    padding: 12px 14px;
+    border: 1px dashed #bbcdd2;
+    border-radius: 6px;
+}
+
+.sbpt-add .sbpt-label {
+    margin-top: 0;
+}
+
+.sbpt-add-row {
+    display: flex;
+    gap: 8px;
+}
+
+.sbpt-add-list {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sbpt-add-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 6px 6px 0;
+    padding: 3px 6px 3px 10px;
+    border: 1px solid #b7e3ec;
+    border-radius: 14px;
+    background: #eaf7fa;
+    font-size: 12px;
+}
+
+.sbpt-add-remove {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #c05c67;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.sbpt-add-remove:hover {
+    background: #c05c67;
+    color: #fff;
+}

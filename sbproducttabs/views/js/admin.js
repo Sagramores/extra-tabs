@@ -169,7 +169,8 @@
       var rule = String(select.value);
       Array.prototype.forEach.call(pickers, function (picker) {
         var group = picker.closest('.form-group') || picker;
-        group.style.display = picker.getAttribute('data-rule') === rule ? '' : 'none';
+        var rules = (picker.getAttribute('data-rules') || '').split(',');
+        group.style.display = rules.indexOf(rule) !== -1 ? '' : 'none';
       });
     }
 

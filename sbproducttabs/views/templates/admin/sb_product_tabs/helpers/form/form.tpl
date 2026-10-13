@@ -8,7 +8,7 @@
 
 {block name="input"}
     {if $input.type == 'sb_picker'}
-        <div class="sbpt-picker" data-entity="{$input.entity|escape:'html':'UTF-8'}" data-rule="{$input.rule|intval}">
+        <div class="sbpt-picker" data-entity="{$input.entity|escape:'html':'UTF-8'}" data-rules="{$input.rule|escape:'html':'UTF-8'}">
             <input type="hidden" name="{$input.name|escape:'html':'UTF-8'}" class="sbpt-picker-value" value="{$input.selected_ids|escape:'html':'UTF-8'}" />
             <div class="input-group sbpt-picker-search">
                 <input type="text" class="form-control sbpt-picker-input" autocomplete="off" placeholder="{$input.placeholder|escape:'html':'UTF-8'}" />

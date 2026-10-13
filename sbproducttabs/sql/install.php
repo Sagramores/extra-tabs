@@ -18,6 +18,8 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'sb_product_tab` (
     `product_ids` TEXT NULL,
     `category_ids` TEXT NULL,
     `manufacturer_ids` TEXT NULL,
+    `include_product_ids` TEXT NULL,
+    `exclude_product_ids` TEXT NULL,
     `position` INT(10) UNSIGNED NOT NULL DEFAULT 0,
     `active` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
     PRIMARY KEY (`id_sb_product_tab`)
